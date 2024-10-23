@@ -7,3 +7,5 @@ class Mobiles(models.Model):
     release_year=models.IntegerField()
     price=models.PositiveIntegerField()
     
+    def __str__(self):
+        return self.model
