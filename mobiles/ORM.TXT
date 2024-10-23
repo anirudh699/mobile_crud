@@ -1,0 +1,42 @@
+class Mobile(models.Model):
+    brand = models.CharField(max_length=100)
+    model = models.CharField(max_length=100)
+    release_year = models.PositiveBigIntegerField()
+    price = models.PositiveBigIntegerField()
+
+# ORM query for creating a mobile record
+Mobile.objects.create(
+    brand="Samsung",
+    model="Galaxy A54",
+    release_year=2023,
+    price=38999
+)
+
+# ORM query for fetching all mobile records
+qs = Mobile.objects.all()
+
+# Shell commands
+# Open the Django shell
+# >> python manage.py shell
+
+# Import the Mobile model into the shell
+# >> from yourapp.models import Mobile
+
+# ORM query for fetching a specific mobile record
+# >> qs = Mobile.objects.get(id=1)
+
+# ORM query for filtering mobile records
+# Fetch Samsung mobiles
+qs = Mobile.objects.filter(brand="Samsung")
+
+# Fetch mobiles released in 2024
+qs = Mobile.objects.filter(release_year=2024)
+
+# Fetch mobiles priced less than 50000
+qs = Mobile.objects.filter(price__lt=50000)
+
+# Exclude certain mobiles
+qs = Mobile.objects.all().exclude(brand="Apple")
+
+# Fetch mobiles priced greater than 100000, excluding a specific model
+qs = Mobile.objects.filter(price__gt=100000).exclude(model="iPhone 14")

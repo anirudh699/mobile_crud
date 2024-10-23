@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vehicle Information</title>
+    <!-- Bootstrap -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .mobile-card {
+            background-color: #f8f9fa;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 15px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .mobile-card h5 {
+            font-weight: bold;
+            color: #343a40;
+        }
+        .mobile-card p {
+            margin-bottom: 5px;
+            color: #6c757d;
+        }
+    </style>
+</head>
+<body>
+    <div class="container my-5">
+        <h1 class="text-center mb-4">Mobile List</h1>
+        {{data}}
+        {% for v in data %}
+            <div class="mobile-card">
+                <h5>{{ v.name }}</h5>
+                <p><strong>Brand:</strong> {{ v.brand }}</p>
+                <p><strong>Model:</strong> {{ v.model }}</p>
+                <p><strong>Release year:</strong> {{ v.release_year }}</p>
+                <p><strong>Price:</strong> ₹{{ v.price }}</p>
+            </div>
+        {% endfor %}
+    </div>
+
+   
+</body>
+</html>
