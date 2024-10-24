@@ -22,4 +22,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('mobiles/add',views.MobileView.as_view(),name="mobile-add"),
     path('mobiles/list',views.MobilesList.as_view(),name="mobile-list"),
+    path('mobiles/<int:pk>/detail',views.MobileDetail.as_view(),name="mobile-detail"),
+    path('mobiles/<int:pk>/remove',views.MobileDeleteview.as_view(),name="mobile-delete"),
 ]

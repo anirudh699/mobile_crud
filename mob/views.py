@@ -1,7 +1,9 @@
-from django.shortcuts import render
+from django.shortcuts import redirect, render
 from django.views import View
 from mob.forms import MobileForm
 from mob.models import Mobiles
+
+
 
 # Create your views here.
 class MobileView(View):
@@ -29,7 +31,7 @@ class MobileView(View):
                 price=data.get("price")
                 
             )
-            return render(request,self.template,{"form":form_instance})
+            return redirect("mobile-list")
     
 
 class MobilesList(View):
@@ -39,3 +41,21 @@ class MobilesList(View):
         qs=Mobiles.objects.all()
         print(qs)
         return render(request,self.template_name,{"data":qs})
+    
+    
+class MobileDetail(View):
+    template_name="mobile_detail.html"
+    def get(self,request,*args,**kwrgs):
+        id=kwrgs.get("pk")
+        qs=Mobiles.objects.get(id=id)
+        return render(request,self.template_name,{"data":qs})
+
+        
+       
+class MobileDeleteview(View):
+    template_name="mobile_delete.html"
+    def get(self,request,*args,**kwrgs):
+        id=kwrgs.get("pk")
+        qs=Mobiles.objects.get(id=id).delete()
+        return redirect("mobile-list")
+    

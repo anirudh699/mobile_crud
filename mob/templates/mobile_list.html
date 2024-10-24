@@ -6,38 +6,37 @@
     <title>Mbile Information</title>
     <!-- Bootstrap -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-    <style>
-        .mobile-card {
-            background-color: #f8f9fa;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            padding: 15px;
-            margin-bottom: 20px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
-        .mobile-card h5 {
-            font-weight: bold;
-            color: #343a40;
-        }
-        .mobile-card p {
-            margin-bottom: 5px;
-            color: #6c757d;
-        }
-    </style>
+    
 </head>
 <body>
     <div class="container my-5">
         <h1 class="text-center mb-4">Mobile List</h1>
         <!-- {{data}} -->
-        {% for v in data %}
-            <div class="mobile-card">
-                <h5>{{ v.name }}</h5>
-                <p><strong>Brand:</strong> {{ v.brand }}</p>
-                <p><strong>Model:</strong> {{ v.model }}</p>
-                <p><strong>Release year:</strong> {{ v.release_year }}</p>
-                <p><strong>Price:</strong> ₹{{ v.price }}</p>
+         <div class="row">
+            {% for v in data %}
+            <div class="col-3" >
+                <div class="card mb-4"  style="width: 100%;">
+                    <img src="" class="card-img-top" alt="">
+                    <div class="card-body">
+                      <h5 class="card-title">{{v.model}}</h5>
+                      <p class="card-text"></p>
+                    </div>
+                    <ul class="list-group list-group-flush">
+                      <li class="list-group-item">brand: {{v.brand}}</li>
+                      <li class="list-group-item">Realese year: {{v.release_year}}</li>
+                      <li class="list-group-item">price: {{v.price}}</li>
+                    </ul>
+                    <div class="card-body">
+                      <a href="{%url 'mobile-detail' v.id%}" class="card-link">View</a>
+                      <a href="{%url 'mobile-delete' v.id%}" class="card-link">Delete</a>
+                    </div>
+                  </div>
             </div>
-        {% endfor %}
+            
+            {% endfor %}
+
+         </div>
+      
     </div>
 
    
